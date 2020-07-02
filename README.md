@@ -21,3 +21,22 @@ not if its health points reach 0.
 
 Allow the user to decide whether they would like to fight or skip
 the fight.
+
+
+
+build process for this lesson:
+
+Pseudocode the game logic. 
+
+Add combatants to the battle using arrays.
+
+Fight enemy robot combatants using for loops.
+
+Fight each combatant using function arguments.
+
+Battle the combatants until defeated using a while loop.
+
+Improve the user's game experience.
+
+
+
