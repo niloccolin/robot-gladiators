@@ -56,7 +56,15 @@
     var enemyHealth = 50;
     var enemyAttack = 12;
 
-    var fight = function() {
+    // function to generate a random numeric value
+    var randomNumber = function(min, max) {
+        var value = Math.floor(Math.random() * (max - min + 1) + min);
+
+
+        return value;
+    }
+
+    var fight = function(enemyNames) {
 
         while(enemyHealth > 0 && playerHealth > 0) {
 
@@ -72,7 +80,7 @@
                 if (confirmSkip) {
                     window.alert(playerName + " has decided to skip this fight. Goodbye!");
                     // subtract money from playerMoney for skipping
-                    playerMoney = playerMoney - 10;
+                    playerMoney = Math.max(0, playerMoney - 10);
                     console.log("playerMoney", playerMoney);
                     break;
                 }
@@ -84,16 +92,22 @@
             else if (promptFight === "fight" || promptFight === "FIGHT") {
 
 
-                // damage enemy by subtracting the amount set in the <playerAttack> variable
-                enemyHealth = enemyHealth - playerAttack;
+                //generate random damage on enemy based on player's attack power
+                var damage = randomNumber(playerAttack - 3, playerAttack);
+
+                enemyHealth = Math.max(0, enemyHealth - damage);
+
                 console.log(
                     playerName + " attacked " + enemyNames + ". " + enemyNames + " now has " + enemyHealth + " health remaining."
                 )
 
 
-                // remove player's health
-                // from damage taken by enemy by subtracting the amount set in the <enemyAttack> variable
-                playerHealth = playerHealth - enemyAttack;
+                //generate random damage on player based on enemy's attack power
+                var damage = randomNumber(enemyAttack - 3, enemyAttack);
+
+
+                playerHealth = Math.max(0, playerHealth - enemyAttack);
+
                 console.log(
                     enemyNames + " attacked " + playerName + ". " + playerName + " now has " + playerHealth + " health remaining."
                 );
@@ -138,7 +152,7 @@
                 
                 var pickedEnemyName = enemyNames[i];
 
-                enemyHealth = 50;
+                enemyHealth = Math.floor(Math.random() * 21) + 40;
 
                 fight(pickedEnemyName);
             }
@@ -239,3 +253,15 @@
 
 
 startGame();
+
+/*
+console.log(Math.PI);
+
+console.log(Math.round(4.4));
+
+console.log(Math.sqrt(25));
+
+console.log(Math.max(10, 20, 100));
+
+console.log(Math.max(0, -50));
+*/
